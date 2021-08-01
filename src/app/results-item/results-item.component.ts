@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IResultItem } from '../interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-results-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-item.component.scss'],
 })
 export class ResultsItemComponent implements OnInit {
+  @Input() item!: IResultItem;
+
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IResultItem } from '../interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-results-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
+  itemsList: IResultItem[] = [];
+
   constructor() {}
 
   ngOnInit(): void {}
