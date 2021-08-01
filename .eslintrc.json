@@ -20,8 +20,7 @@
 
         "airbnb-typescript/base",
 
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
+        "prettier"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
