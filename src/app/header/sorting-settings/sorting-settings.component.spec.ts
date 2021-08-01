@@ -8,9 +8,8 @@ describe('SortingSettingsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SortingSettingsComponent ]
-    })
-    .compileComponents();
+      declarations: [SortingSettingsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
