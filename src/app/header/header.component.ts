@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { IResultItem } from '../interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  itemsList: IResultItem[] = [];
+
   isSettingsHidden = true;
+
+  @Output() didItemsSet = new EventEmitter<IResultItem[]>();
 
   constructor() {
   }
@@ -16,5 +21,10 @@ export class HeaderComponent implements OnInit {
 
   toggleSettings() {
     this.isSettingsHidden = !this.isSettingsHidden;
+  }
+
+  setCards(items: IResultItem[]) {
+    this.itemsList = items;
+    this.didItemsSet.emit(this.itemsList);
   }
 }

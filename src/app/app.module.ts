@@ -10,6 +10,7 @@ import { ResultsListComponent } from './results-list/results-list.component';
 import { ResultsItemComponent } from './results-item/results-item.component';
 import { ResultsItemDescComponent } from './results-item-desc/results-item-desc.component';
 import { SharedModule } from './shared/shared.module';
+import { DateBorderDirective } from './results-item/date-border.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     ResultsListComponent,
     ResultsItemComponent,
     ResultsItemDescComponent,
+    DateBorderDirective,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule],
   providers: [],

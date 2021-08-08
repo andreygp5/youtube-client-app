@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IResultItem } from './interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'youtube-client-app';
+
+  resultItems: IResultItem[] = [];
+
+  setResultItems(items: IResultItem[]) {
+    this.resultItems = items;
+  }
 }

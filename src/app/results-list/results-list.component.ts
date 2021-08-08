@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IResultItem } from '../interfaces/result.item.inteface';
 import { ResultsService } from '../services/results.service';
 
@@ -8,12 +8,15 @@ import { ResultsService } from '../services/results.service';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
-  itemsList: IResultItem[] = [];
+  @Input() itemsList: IResultItem[] = [];
 
   constructor(private resultsService: ResultsService) {
   }
 
   ngOnInit(): void {
+  }
+
+  setCards() {
     this.itemsList = this.resultsService.getCards();
   }
 }

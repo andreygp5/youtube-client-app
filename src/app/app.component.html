@@ -1,2 +1,2 @@
-<app-header></app-header>
-<app-results-list></app-results-list>
+<app-header (didItemsSet)='setResultItems($event)'></app-header>
+<app-results-list [itemsList]='resultItems'></app-results-list>

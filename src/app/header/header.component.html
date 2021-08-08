@@ -1,9 +1,9 @@
 <header class='header'>
   <div class='header__container'>
     <div class='header__search'>
-      <app-search-bar (didToggleSettings)='toggleSettings()'></app-search-bar>
+      <app-search-bar (didSearch)='setCards($event)' (didToggleSettings)='toggleSettings()'></app-search-bar>
       <app-sorting-settings [isHidden]='isSettingsHidden'></app-sorting-settings>
     </div>
-    <app-user-profile class="header__profile"></app-user-profile>
+    <app-user-profile class='header__profile'></app-user-profile>
   </div>
 </header>
