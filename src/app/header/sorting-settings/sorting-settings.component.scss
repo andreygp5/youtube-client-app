@@ -1,0 +1,20 @@
+.settings-wrapper {
+  height: auto;
+  max-height: 100px;
+  transition: max-height .3s;
+
+  &_hidden {
+    height: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s;
+  }
+}
+
+.settings-group {
+  margin-right: 15px;
+}
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 35px;
+}

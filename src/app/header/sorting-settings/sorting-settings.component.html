@@ -1,1 +1,15 @@
-<p>sorting-settings works!</p>
+<div [class.settings-wrapper_hidden]='isHidden' class='settings-wrapper'>
+  <mat-button-toggle-group aria-label='Sort settings name' class='settings-group' name='sortSettingsName'>
+    <mat-button-toggle value='date'>Date</mat-button-toggle>
+    <mat-button-toggle value='views'>Views count</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-button-toggle-group aria-label='Sort settings direction' class='settings-group' name='sortSettingsDirection'>
+    <mat-button-toggle value='increase'>
+      <mat-icon>expand_less</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value='decrease'>
+      <mat-icon>expand_more</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

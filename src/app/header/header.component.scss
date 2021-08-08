@@ -1,0 +1,34 @@
+@use '~@angular/material' as mat;
+
+.header {
+  min-height: 80px;
+  height: auto;
+  width: 100%;
+  padding: 15px 20px;
+
+  background-color: mat.get-color-from-palette(mat.$indigo-palette, 50);
+
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    grid-template-columns: 1fr auto;
+  }
+
+  &__search {
+    width: 100%;
+    max-width: 570px;
+  }
+
+  &__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 7px;
+  }
+}
