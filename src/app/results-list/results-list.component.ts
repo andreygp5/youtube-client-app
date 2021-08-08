@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IResultItem } from '../interfaces/result.item.inteface';
+import { ResultsService } from '../services/results.service';
 
 @Component({
   selector: 'app-results-list',
@@ -9,7 +10,10 @@ import { IResultItem } from '../interfaces/result.item.inteface';
 export class ResultsListComponent implements OnInit {
   itemsList: IResultItem[] = [];
 
-  constructor() {}
+  constructor(private resultsService: ResultsService) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.itemsList = this.resultsService.getCards();
+  }
 }

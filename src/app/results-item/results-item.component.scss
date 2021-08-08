@@ -1,0 +1,29 @@
+.item-card {
+  max-width: 280px;
+
+  &__header {
+    min-height: 70px;
+    line-height: 30px;
+  }
+
+  &__desc {
+    min-height: 80px;
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+  }
+
+  &__count {
+    margin: 0;
+    padding-left: 4px;
+  }
+}

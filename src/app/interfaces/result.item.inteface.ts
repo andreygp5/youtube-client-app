@@ -4,11 +4,14 @@ import { IResultItemThumbnails } from './result.item.thumbnails.interface';
 export interface IResultItem {
   id: string;
 
-  title: string;
-  description: string;
+  snippet: {
+    title: string;
+    description: string;
 
-  publishedAt: string;
+    publishedAt: string;
 
-  stats: IResultItemStats;
-  thumbnails: IResultItemThumbnails;
+    thumbnails: IResultItemThumbnails;
+  };
+
+  statistics: IResultItemStats;
 }

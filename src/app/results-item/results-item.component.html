@@ -1,1 +1,31 @@
-<p>results-item works!</p>
+<mat-card class='item-card'>
+  <mat-card-header class='item-card__header'>
+    <mat-card-title>{{ title }}</mat-card-title>
+  </mat-card-header>
+  <img alt='Image' mat-card-image src='{{ imageUrl }}'>
+  <mat-card-content>
+    <p class='item-card__desc'>{{ description }}</p>
+
+    <div class='item-card__stats stats'>
+      <div class='stats__item'>
+        <mat-icon>visibility</mat-icon>
+        <p class='stats__count'>{{ viewCount }}</p>
+      </div>
+      <div class='stats__item'>
+        <mat-icon>thumb_up</mat-icon>
+        <p class='stats__count'>{{ likeCount }}</p>
+      </div>
+      <div class='stats__item'>
+        <mat-icon>thumb_down</mat-icon>
+        <p class='stats__count'>{{ dislikeCount }}</p>
+      </div>
+      <div class='stats__item'>
+        <mat-icon class='stats__icon'>chat_bubble</mat-icon>
+        <p class='stats__count'>{{ commentCount }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Watch</button>
+  </mat-card-actions>
+</mat-card>
