@@ -1,14 +1,30 @@
 <div [class.settings-wrapper_hidden]='isHidden' class='settings-wrapper'>
-  <mat-button-toggle-group aria-label='Sort settings name' class='settings-group' name='sortSettingsName'>
-    <mat-button-toggle value='date'>Date</mat-button-toggle>
-    <mat-button-toggle value='views'>Views count</mat-button-toggle>
+  <mat-button-toggle-group
+    (valueChange)='onSortNameChange($event)'
+    [value]='checkedSortName'
+    aria-label='Sort settings name'
+    class='settings-group'
+    name='sortSettingsName'
+  >
+    <mat-button-toggle value='DATE'>
+      Date
+    </mat-button-toggle>
+    <mat-button-toggle value='VIEWS'>
+      Views count
+    </mat-button-toggle>
   </mat-button-toggle-group>
 
-  <mat-button-toggle-group aria-label='Sort settings direction' class='settings-group' name='sortSettingsDirection'>
-    <mat-button-toggle value='increase'>
+  <mat-button-toggle-group
+    (valueChange)='onSortDirectionChange($event)'
+    [value]='checkedSortDirection'
+    aria-label='Sort settings direction'
+    class='settings-group'
+    name='sortSettingsDirection'
+  >
+    <mat-button-toggle value='INCREASING'>
       <mat-icon>expand_less</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value='decrease'>
+    <mat-button-toggle value='DECREASING'>
       <mat-icon>expand_more</mat-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
