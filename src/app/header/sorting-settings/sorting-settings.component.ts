@@ -10,11 +10,13 @@ import { ISortSettings } from '../../interfaces/sort.settings.interface';
 })
 export class SortingSettingsComponent {
   @Input() isHidden!: boolean;
-
   @Output() didSettingsChange = new EventEmitter<ISortSettings>();
 
-  checkedSortName: SortNameEnum | undefined;
+  // Need this to use enums in template
+  sortNameEnum = SortNameEnum;
+  sortDirectionEnum = SortDirectionEnum;
 
+  checkedSortName: SortNameEnum | undefined;
   checkedSortDirection: SortDirectionEnum | undefined;
 
   constructor() {

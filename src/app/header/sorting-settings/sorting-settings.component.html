@@ -6,10 +6,10 @@
     class='settings-group'
     name='sortSettingsName'
   >
-    <mat-button-toggle value='DATE'>
+    <mat-button-toggle value='{{ sortNameEnum.DATE }}'>
       Date
     </mat-button-toggle>
-    <mat-button-toggle value='VIEWS'>
+    <mat-button-toggle value='{{ sortNameEnum.VIEWS }}'>
       Views count
     </mat-button-toggle>
   </mat-button-toggle-group>
@@ -21,10 +21,10 @@
     class='settings-group'
     name='sortSettingsDirection'
   >
-    <mat-button-toggle value='INCREASING'>
+    <mat-button-toggle value='{{ sortDirectionEnum.INCREASING }}'>
       <mat-icon>expand_less</mat-icon>
     </mat-button-toggle>
-    <mat-button-toggle value='DECREASING'>
+    <mat-button-toggle value='{{ sortDirectionEnum.DECREASING }}'>
       <mat-icon>expand_more</mat-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
