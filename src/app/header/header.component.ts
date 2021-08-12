@@ -1,14 +1,15 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IResultItem } from '../interfaces/result.item.inteface';
 import { ISortSettings } from '../interfaces/sort.settings.interface';
 import { SortResultsService } from '../services/sort-results.service';
+import { FilterByWordService } from '../services/filter-by-word.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   itemsList: IResultItem[] = [];
   sortSettings?: ISortSettings;
   isSettingsHidden = true;
@@ -16,7 +17,17 @@ export class HeaderComponent {
   @Output() didItemsSet = new EventEmitter<IResultItem[]>();
   @Output() didSortSettingsChange = new EventEmitter<ISortSettings>();
 
-  constructor(private sortResultsService: SortResultsService) {
+  constructor(private sortResultsService: SortResultsService, private filterByWordService: FilterByWordService) {
+  }
+
+  ngOnInit() {
+    this.subscribeToFilterByWords();
+  }
+
+  subscribeToFilterByWords() {
+    this.filterByWordService.filterWord.subscribe(() => {
+      this.sortAndFilterItems(this.itemsList);
+    });
   }
 
   toggleSettings() {
@@ -25,16 +36,27 @@ export class HeaderComponent {
 
   onSortSettingsChange(sortSettings: ISortSettings) {
     this.sortSettings = sortSettings;
-    this.setCards(this.itemsList);
+    this.sortAndFilterItems(this.itemsList);
+  }
+
+  sortAndFilterItems(items: IResultItem[]) {
+    let processedCards = items;
+
+    if (this.sortSettings) {
+      processedCards = this.sortResultsService.delegateSort(processedCards, this.sortSettings);
+    }
+
+    processedCards = this.filterByWordService.filterByWord(this.itemsList);
+
+    this.emitCards(processedCards);
   }
 
   setCards(items: IResultItem[]) {
-    if (this.sortSettings) {
-      this.itemsList = this.sortResultsService.delegateSort(items, this.sortSettings);
-    } else {
-      this.itemsList = items;
-    }
+    this.itemsList = items;
+    this.emitCards(items);
+  }
 
-    this.didItemsSet.emit(this.itemsList);
+  emitCards(items: IResultItem[]) {
+    this.didItemsSet.emit(items);
   }
 }
