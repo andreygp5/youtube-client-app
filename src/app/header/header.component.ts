@@ -10,6 +10,7 @@ import { SortResultsService } from '../services/sort-results.service';
 })
 export class HeaderComponent {
   itemsList: IResultItem[] = [];
+  sortSettings?: ISortSettings;
   isSettingsHidden = true;
 
   @Output() didItemsSet = new EventEmitter<IResultItem[]>();
@@ -23,11 +24,17 @@ export class HeaderComponent {
   }
 
   onSortSettingsChange(sortSettings: ISortSettings) {
-    this.setCards(this.sortResultsService.delegateSort(this.itemsList, sortSettings));
+    this.sortSettings = sortSettings;
+    this.setCards(this.itemsList);
   }
 
   setCards(items: IResultItem[]) {
-    this.itemsList = items;
+    if (this.sortSettings) {
+      this.itemsList = this.sortResultsService.delegateSort(items, this.sortSettings);
+    } else {
+      this.itemsList = items;
+    }
+
     this.didItemsSet.emit(this.itemsList);
   }
 }
