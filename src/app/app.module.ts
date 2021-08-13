@@ -9,7 +9,6 @@ import { UserProfileComponent } from './header/user-profile/user-profile.compone
 import { SortingSettingsComponent } from './header/sorting-settings/sorting-settings.component';
 import { ResultsListComponent } from './results-list/results-list.component';
 import { ResultsItemComponent } from './results-item/results-item.component';
-import { ResultsItemDescComponent } from './results-item-desc/results-item-desc.component';
 import { SharedModule } from './shared/shared.module';
 import { DateBorderDirective } from './results-item/date-border.directive';
 import { FilterByWordComponent } from './header/sorting-settings/filter-by-word/filter-by-word.component';
@@ -23,7 +22,6 @@ import { FilterByWordComponent } from './header/sorting-settings/filter-by-word/
     SortingSettingsComponent,
     ResultsListComponent,
     ResultsItemComponent,
-    ResultsItemDescComponent,
     DateBorderDirective,
     FilterByWordComponent,
   ],

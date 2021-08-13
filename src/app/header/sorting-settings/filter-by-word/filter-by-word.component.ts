@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FilterByWordService } from '../../../services/filter-by-word.service';
-import { IResultItem } from '../../../interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-filter-by-word',

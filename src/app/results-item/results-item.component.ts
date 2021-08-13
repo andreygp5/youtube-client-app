@@ -11,7 +11,6 @@ export class ResultsItemComponent implements OnInit {
   @Input() item!: IResultItem;
 
   title: string = '';
-
   description: string = '';
 
   publishedAt: string = '';
@@ -19,11 +18,8 @@ export class ResultsItemComponent implements OnInit {
   imageUrl: string = '';
 
   viewCount: number = 0;
-
   likeCount: number = 0;
-
   dislikeCount: number = 0;
-
   commentCount: number = 0;
 
   constructor(private trimTextService: TrimTextService) {

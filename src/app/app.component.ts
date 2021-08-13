@@ -9,9 +9,9 @@ import { IResultItem } from './interfaces/result.item.inteface';
 export class AppComponent {
   title = 'youtube-client-app';
 
-  resultItems: IResultItem[] = [];
+  resultItemsList: IResultItem[] = [];
 
   setResultItems(items: IResultItem[]) {
-    this.resultItems = items;
+    this.resultItemsList = items;
   }
 }

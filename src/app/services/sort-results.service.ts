@@ -8,13 +8,23 @@ import { ISortSettings } from '../interfaces/sort.settings.interface';
 })
 export class SortResultsService {
   resultsList: IResultItem[] = [];
+  sortSettings?: ISortSettings;
 
   constructor() {
   }
 
-  delegateSort(resultsList: IResultItem[], sortSettings: ISortSettings): IResultItem[] {
+  setSortSettings(sortSettings: ISortSettings) {
+    this.sortSettings = sortSettings;
+  }
+
+  delegateSort(resultsList: IResultItem[]): IResultItem[] {
     this.resultsList = resultsList;
-    const { sortName, sortDirection } = sortSettings;
+
+    if (!this.sortSettings) {
+      return resultsList;
+    }
+
+    const { sortName, sortDirection } = this.sortSettings;
 
     if (!sortName || !sortDirection) {
       return this.resultsList;

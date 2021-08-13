@@ -3,6 +3,7 @@ import { IResultItem } from '../interfaces/result.item.inteface';
 import { ISortSettings } from '../interfaces/sort.settings.interface';
 import { SortResultsService } from '../services/sort-results.service';
 import { FilterByWordService } from '../services/filter-by-word.service';
+import { ResultsService } from '../services/results.service';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +11,17 @@ import { FilterByWordService } from '../services/filter-by-word.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  itemsList: IResultItem[] = [];
-  sortSettings?: ISortSettings;
+  resultItemsList: IResultItem[] = [];
   isSettingsHidden = true;
 
-  @Output() didItemsSet = new EventEmitter<IResultItem[]>();
+  @Output() didResultItemsSet = new EventEmitter<IResultItem[]>();
   @Output() didSortSettingsChange = new EventEmitter<ISortSettings>();
 
-  constructor(private sortResultsService: SortResultsService, private filterByWordService: FilterByWordService) {
+  constructor(
+    private sortResultsService: SortResultsService,
+    private filterByWordService: FilterByWordService,
+    private resultsService: ResultsService,
+  ) {
   }
 
   ngOnInit() {
@@ -26,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
   subscribeToFilterByWords() {
     this.filterByWordService.filterWord.subscribe(() => {
-      this.sortAndFilterItems(this.itemsList);
+      this.emitCards(this.resultsService.transformResults(this.resultItemsList));
     });
   }
 
@@ -35,28 +39,16 @@ export class HeaderComponent implements OnInit {
   }
 
   onSortSettingsChange(sortSettings: ISortSettings) {
-    this.sortSettings = sortSettings;
-    this.sortAndFilterItems(this.itemsList);
-  }
-
-  sortAndFilterItems(items: IResultItem[]) {
-    let processedCards = items;
-
-    if (this.sortSettings) {
-      processedCards = this.sortResultsService.delegateSort(processedCards, this.sortSettings);
-    }
-
-    processedCards = this.filterByWordService.filterByWord(this.itemsList);
-
-    this.emitCards(processedCards);
+    this.sortResultsService.setSortSettings(sortSettings);
+    this.emitCards(this.resultsService.transformResults(this.resultItemsList));
   }
 
   setCards(items: IResultItem[]) {
-    this.itemsList = items;
+    this.resultItemsList = items;
     this.emitCards(items);
   }
 
   emitCards(items: IResultItem[]) {
-    this.didItemsSet.emit(items);
+    this.didResultItemsSet.emit(items);
   }
 }

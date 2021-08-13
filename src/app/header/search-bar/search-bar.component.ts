@@ -9,7 +9,6 @@ import { ResultsService } from '../../services/results.service';
 })
 export class SearchBarComponent implements OnInit {
   @Output() didToggleSettings = new EventEmitter<boolean>();
-
   @Output() didSearch = new EventEmitter<IResultItem[]>();
 
   constructor(private resultsService: ResultsService) {
