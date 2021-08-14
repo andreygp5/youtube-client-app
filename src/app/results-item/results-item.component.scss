@@ -1,14 +1,33 @@
 .item-card {
-  max-width: 280px;
+  max-width: 300px;
   border-bottom: 5px solid gray;
+
+  @media (max-width: 660px) {
+    max-width: 270px;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 300px;
+  }
 
   &__header {
     min-height: 70px;
     line-height: 30px;
+
+    @media (max-width: 660px) {
+      min-height: 62px;
+      line-height: 25px;
+    }
   }
 
   &__desc {
     min-height: 80px;
+  }
+
+  .mat-card-header .mat-card-title {
+    @media (max-width: 660px) {
+      font-size: 16px;
+    }
   }
 }
 
