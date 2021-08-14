@@ -8,19 +8,19 @@ import { TrimTextService } from '../services/trim-text.service';
   styleUrls: ['./results-item.component.scss'],
 })
 export class ResultsItemComponent implements OnInit {
-  @Input() item!: IResultItem;
+  @Input() public item!: IResultItem;
 
-  title: string = '';
-  description: string = '';
+  public title: string = '';
+  public description: string = '';
 
-  publishedAt: string = '';
+  public publishedAt: string = '';
 
-  imageUrl: string = '';
+  public imageUrl: string = '';
 
-  viewCount: number = 0;
-  likeCount: number = 0;
-  dislikeCount: number = 0;
-  commentCount: number = 0;
+  public viewCount: number = 0;
+  public likeCount: number = 0;
+  public dislikeCount: number = 0;
+  public commentCount: number = 0;
 
   constructor(private trimTextService: TrimTextService) {
   }

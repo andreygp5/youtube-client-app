@@ -8,7 +8,7 @@ export class TrimTextService {
   constructor() {
   }
 
-  trimText(text: string, maxLetters: number) {
+  trimText(text: string, maxLetters: number): string {
     return text.length > maxLetters ? `${text.slice(0, maxLetters)}...` : text;
   }
 }

@@ -8,20 +8,20 @@ import { ResultsService } from '../../services/results.service';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-  @Output() didToggleSettings = new EventEmitter<boolean>();
-  @Output() didSearch = new EventEmitter<IResultItem[]>();
+  @Output() public didToggleSettings = new EventEmitter<boolean>();
+  @Output() public didSearch = new EventEmitter<IResultItem[]>();
 
   constructor(private resultsService: ResultsService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  toggleSettings(): void {
+  public toggleSettings(): void {
     this.didToggleSettings.emit();
   }
 
-  search() {
+  public search(): void {
     this.didSearch.emit(this.resultsService.getCards());
   }
 }

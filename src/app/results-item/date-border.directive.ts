@@ -4,23 +4,23 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
   selector: '[appDateBorder]',
 })
 export class DateBorderDirective implements OnInit {
-  MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
+  private MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
-  @Input() dateString!: string;
+  @Input() public dateString!: string;
 
-  dateObj: Date = new Date();
-  borderColor: 'green' | 'blue' | 'red' = 'green';
+  private dateObj: Date = new Date();
+  private borderColor: 'green' | 'blue' | 'red' = 'green';
 
   constructor(private el: ElementRef) {
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dateObj = new Date(this.dateString);
 
     this.setBorderColor();
   }
 
-  setBorderColor() {
+  private setBorderColor(): void {
     const now = new Date();
     const daySincePublished = (now.getTime() - this.dateObj.getTime()) / this.MILLISECONDS_IN_A_DAY;
 

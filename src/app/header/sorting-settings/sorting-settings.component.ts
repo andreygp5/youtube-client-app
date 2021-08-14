@@ -9,27 +9,27 @@ import { ISortSettings } from '../../interfaces/sort.settings.interface';
   styleUrls: ['./sorting-settings.component.scss'],
 })
 export class SortingSettingsComponent {
-  @Input() isHidden!: boolean;
-  @Output() didSettingsChange = new EventEmitter<ISortSettings>();
+  @Input() public isHidden!: boolean;
+  @Output() public didSettingsChange = new EventEmitter<ISortSettings>();
 
   // Need this to use enums in template
-  sortNameEnum = SortNameEnum;
-  sortDirectionEnum = SortDirectionEnum;
+  public sortNameEnum = SortNameEnum;
+  public sortDirectionEnum = SortDirectionEnum;
 
-  checkedSortName: SortNameEnum | undefined;
-  checkedSortDirection: SortDirectionEnum | undefined;
+  public checkedSortName: SortNameEnum | undefined;
+  public checkedSortDirection: SortDirectionEnum | undefined;
 
   constructor() {
   }
 
-  emitSortSettingsChange() {
+  private emitSortSettingsChange(): void {
     this.didSettingsChange.emit({
       sortName: this.checkedSortName,
       sortDirection: this.checkedSortDirection,
     });
   }
 
-  onSortNameChange(buttonValue: SortNameEnum | undefined) {
+  public onSortNameChange(buttonValue: SortNameEnum | undefined): void {
     if (buttonValue) {
       this.checkedSortName = buttonValue;
 
@@ -42,7 +42,7 @@ export class SortingSettingsComponent {
     }
   }
 
-  onSortDirectionChange(buttonValue: SortDirectionEnum | undefined) {
+  public onSortDirectionChange(buttonValue: SortDirectionEnum | undefined): void {
     if (buttonValue) {
       this.checkedSortDirection = buttonValue;
 

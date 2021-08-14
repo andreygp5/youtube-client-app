@@ -7,11 +7,11 @@ import { IResultItem } from './interfaces/result.item.inteface';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'youtube-client-app';
+  public title = 'youtube-client-app';
 
-  resultItemsList: IResultItem[] = [];
+  public resultItemsList: IResultItem[] = [];
 
-  setResultItems(items: IResultItem[]) {
+  public setResultItems(items: IResultItem[]) {
     this.resultItemsList = items;
   }
 }

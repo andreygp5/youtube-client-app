@@ -7,13 +7,13 @@ import { ISortSettings } from '../interfaces/sort.settings.interface';
   providedIn: 'root',
 })
 export class SortResultsService {
-  resultsList: IResultItem[] = [];
-  sortSettings?: ISortSettings;
+  private resultsList: IResultItem[] = [];
+  private sortSettings?: ISortSettings;
 
   constructor() {
   }
 
-  setSortSettings(sortSettings: ISortSettings) {
+  setSortSettings(sortSettings: ISortSettings): void {
     this.sortSettings = sortSettings;
   }
 

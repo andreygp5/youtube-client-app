@@ -8,15 +8,15 @@ import { ResultsService } from '../services/results.service';
   styleUrls: ['./results-list.component.scss'],
 })
 export class ResultsListComponent implements OnInit {
-  @Input() itemsList: IResultItem[] = [];
+  @Input() public itemsList: IResultItem[] = [];
 
   constructor(private resultsService: ResultsService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  setCards() {
+  public setCards(): void {
     this.itemsList = this.resultsService.getCards();
   }
 }

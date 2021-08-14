@@ -7,7 +7,7 @@ import { SortResultsService } from './sort-results.service';
   providedIn: 'root',
 })
 export class ResultsService {
-  cards = [
+  private cards = [
     {
       'kind': 'youtube#video',
       'etag': '"Fznwjl6JEQdo1MGvHOGaz_YanRU/tmmI1yiRrmLWlKikXk1gD3TXsUI"',
@@ -767,15 +767,15 @@ export class ResultsService {
     return resultItemsCopy;
   }
 
-  applySort(resultItems: IResultItem[]): IResultItem[] {
+  private applySort(resultItems: IResultItem[]): IResultItem[] {
     return this.filterByWordService.filterByWord(resultItems);
   }
 
-  applyFilterByWord(resultItems: IResultItem[]): IResultItem[] {
+  private applyFilterByWord(resultItems: IResultItem[]): IResultItem[] {
     return this.sortResultsService.delegateSort(resultItems);
   }
 
-  getCards(): IResultItem[] {
+  public getCards(): IResultItem[] {
     return this.cards as unknown as IResultItem[];
   }
 }

@@ -11,11 +11,11 @@ import { ResultsService } from '../services/results.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  resultItemsList: IResultItem[] = [];
-  isSettingsHidden = true;
+  public resultItemsList: IResultItem[] = [];
+  public isSettingsHidden: boolean = true;
 
-  @Output() didResultItemsSet = new EventEmitter<IResultItem[]>();
-  @Output() didSortSettingsChange = new EventEmitter<ISortSettings>();
+  @Output() public didResultItemsSet = new EventEmitter<IResultItem[]>();
+  @Output() public didSortSettingsChange = new EventEmitter<ISortSettings>();
 
   constructor(
     private sortResultsService: SortResultsService,
@@ -24,31 +24,31 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
-    this.subscribeToFilterByWords();
-  }
-
-  subscribeToFilterByWords() {
-    this.filterByWordService.filterWord.subscribe(() => {
-      this.emitCards(this.resultsService.transformResults(this.resultItemsList));
-    });
-  }
-
-  toggleSettings() {
+  public toggleSettings(): void {
     this.isSettingsHidden = !this.isSettingsHidden;
   }
 
-  onSortSettingsChange(sortSettings: ISortSettings) {
+  public onSortSettingsChange(sortSettings: ISortSettings): void {
     this.sortResultsService.setSortSettings(sortSettings);
     this.emitCards(this.resultsService.transformResults(this.resultItemsList));
   }
 
-  setCards(items: IResultItem[]) {
+  public setCards(items: IResultItem[]): void {
     this.resultItemsList = items;
     this.emitCards(items);
   }
 
-  emitCards(items: IResultItem[]) {
+  public ngOnInit(): void {
+    this.subscribeToFilterByWords();
+  }
+
+  private emitCards(items: IResultItem[]): void {
     this.didResultItemsSet.emit(items);
+  }
+
+  private subscribeToFilterByWords(): void {
+    this.filterByWordService.filterWord.subscribe(() => {
+      this.emitCards(this.resultsService.transformResults(this.resultItemsList));
+    });
   }
 }
