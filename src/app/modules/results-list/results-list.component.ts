@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IResultItem } from '../interfaces/result.item.inteface';
-import { ResultsService } from '../services/results.service';
+import { IResultItem } from '../../interfaces/result.item.inteface';
+import { ResultsService } from '../../services/results.service';
 
 @Component({
   selector: 'app-results-list',

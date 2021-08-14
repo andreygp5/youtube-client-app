@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IResultItem } from '../interfaces/result.item.inteface';
-import { ISortSettings } from '../interfaces/sort.settings.interface';
-import { SortResultsService } from '../services/sort-results.service';
-import { FilterByWordService } from '../services/filter-by-word.service';
-import { ResultsService } from '../services/results.service';
+import { IResultItem } from '../../interfaces/result.item.inteface';
+import { ISortSettings } from '../../interfaces/sort.settings.interface';
+import { SortResultsService } from '../../services/sort-results.service';
+import { FilterByWordService } from '../../services/filter-by-word.service';
+import { ResultsService } from '../../services/results.service';
 
 @Component({
   selector: 'app-header',

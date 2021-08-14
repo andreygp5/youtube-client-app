@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SortNameEnum } from '../../enums/sort.name.enum';
-import { SortDirectionEnum } from '../../enums/sort.direction.enum';
-import { ISortSettings } from '../../interfaces/sort.settings.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SortNameEnum } from '../../../enums/sort.name.enum';
+import { SortDirectionEnum } from '../../../enums/sort.direction.enum';
+import { ISortSettings } from '../../../interfaces/sort.settings.interface';
 
 @Component({
   selector: 'app-sorting-settings',
@@ -20,13 +20,6 @@ export class SortingSettingsComponent {
   public checkedSortDirection: SortDirectionEnum | undefined;
 
   constructor() {
-  }
-
-  private emitSortSettingsChange(): void {
-    this.didSettingsChange.emit({
-      sortName: this.checkedSortName,
-      sortDirection: this.checkedSortDirection,
-    });
   }
 
   public onSortNameChange(buttonValue: SortNameEnum | undefined): void {
@@ -53,5 +46,12 @@ export class SortingSettingsComponent {
 
       this.emitSortSettingsChange();
     }
+  }
+
+  private emitSortSettingsChange(): void {
+    this.didSettingsChange.emit({
+      sortName: this.checkedSortName,
+      sortDirection: this.checkedSortDirection,
+    });
   }
 }

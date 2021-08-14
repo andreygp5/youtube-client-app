@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IResultItem } from '../interfaces/result.item.inteface';
+import { IResultItem } from '../../../interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-results-item',

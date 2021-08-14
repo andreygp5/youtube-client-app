@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IResultItem } from '../../interfaces/result.item.inteface';
-import { ResultsService } from '../../services/results.service';
+import { IResultItem } from '../../../interfaces/result.item.inteface';
+import { ResultsService } from '../../../services/results.service';
 
 @Component({
   selector: 'app-search-bar',

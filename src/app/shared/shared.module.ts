@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { LogoComponent } from './logo/logo.component';
+import { TrimTextPipe } from './pipes/trim-text.pipe';
 
 @NgModule({
   declarations: [
     LogoComponent,
+    TrimTextPipe,
   ],
   imports: [
     CommonModule,
@@ -14,6 +17,8 @@ import { LogoComponent } from './logo/logo.component';
   exports: [
     MaterialModule,
     LogoComponent,
+    TrimTextPipe,
+    FormsModule,
   ],
 })
 export class SharedModule {
