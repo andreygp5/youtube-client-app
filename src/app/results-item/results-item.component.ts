@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IResultItem } from '../interfaces/result.item.inteface';
-import { TrimTextService } from '../services/trim-text.service';
 
 @Component({
   selector: 'app-results-item',
@@ -22,7 +21,7 @@ export class ResultsItemComponent implements OnInit {
   public dislikeCount: number = 0;
   public commentCount: number = 0;
 
-  constructor(private trimTextService: TrimTextService) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -34,8 +33,8 @@ export class ResultsItemComponent implements OnInit {
     const { viewCount = '0', likeCount = '0', dislikeCount = '0', commentCount = '0' } = this.item.statistics;
     const imageUrl = this.item.snippet.thumbnails.high.url;
 
-    this.title = this.trimTextService.trimText(title, 30);
-    this.description = this.trimTextService.trimText(description, 60);
+    this.title = title;
+    this.description = description;
     this.publishedAt = publishedAt;
 
     this.imageUrl = imageUrl;

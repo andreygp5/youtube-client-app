@@ -12,6 +12,7 @@ import { ResultsItemComponent } from './results-item/results-item.component';
 import { SharedModule } from './shared/shared.module';
 import { DateBorderDirective } from './results-item/date-border.directive';
 import { FilterByWordComponent } from './header/sorting-settings/filter-by-word/filter-by-word.component';
+import { TrimTextPipe } from './pipes/trim-text.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FilterByWordComponent } from './header/sorting-settings/filter-by-word/
     ResultsItemComponent,
     DateBorderDirective,
     FilterByWordComponent,
+    TrimTextPipe,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, SharedModule, FormsModule],
   providers: [],
