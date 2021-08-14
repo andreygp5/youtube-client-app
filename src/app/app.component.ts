@@ -7,8 +7,6 @@ import { IResultItem } from './interfaces/result.item.inteface';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public title = 'youtube-client-app';
-
   public resultItemsList: IResultItem[] = [];
 
   public setResultItems(items: IResultItem[]) {
