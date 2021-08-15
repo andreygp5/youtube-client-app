@@ -1,0 +1,11 @@
+:host {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+
+.test-row {
+  display: grid;
+  grid-template-columns: repeat(2, 100px);
+
+  margin: 12px 0 0 0;
+}

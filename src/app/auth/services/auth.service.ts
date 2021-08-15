@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthTokenService } from './auth-token.service';
+import { TEST_EMAIL, TEST_PASSWORD } from '../../core/constants/test.values';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { AuthTokenService } from './auth-token.service';
 export class AuthService {
   public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getIsLoggedIn());
 
-  private TEST_EMAIL: string = 'test@gmail.com';
-  private TEST_PASSWORD: string = 'password';
+  private TEST_EMAIL: string = TEST_EMAIL;
+  private TEST_PASSWORD: string = TEST_PASSWORD;
 
   constructor(private authTokenService: AuthTokenService, private router: Router) {
   }

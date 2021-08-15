@@ -7,5 +7,10 @@
   padding-top: 70px;
 
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form {
+  padding-bottom: 70px;
 }

@@ -1,5 +1,4 @@
 <h2 class='title'>Login Page</h2>
-
 <div class='form-container'>
   <form (ngSubmit)='onFormSubmit()' class='form' [formGroup]="loginForm">
     <div class='form__row'>
@@ -18,4 +17,7 @@
 
     <button color='primary' mat-flat-button type='submit' [disabled]='isButtonDisabled'>Login</button>
   </form>
+
+  <app-test-values></app-test-values>
+
 </div>

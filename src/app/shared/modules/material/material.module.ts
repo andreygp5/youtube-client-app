@@ -10,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatDividerModule,
   ],
   exports: [
     MatButtonModule,
@@ -37,6 +39,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatDividerModule,
   ],
 })
 export class MaterialModule {
