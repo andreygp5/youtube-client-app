@@ -6,7 +6,7 @@ import { IResultItem } from '../../shared/models/interfaces/result.item.inteface
   providedIn: 'root',
 })
 export class FilterByWordService {
-  public filterWord: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public filterWord: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor() {
   }
@@ -16,6 +16,6 @@ export class FilterByWordService {
   }
 
   filterByWord(resultItem: IResultItem[]): IResultItem[] {
-    return resultItem.filter((item) => item.snippet.title.includes(this.filterWord.value));
+    return resultItem.filter((item) => item.snippet.title.includes(this.filterWord.value || ''));
   }
 }

@@ -770,7 +770,7 @@ export class SearchResultsService {
     this.subscribeToSortChange();
     this.subscribeToFilterChange();
   }
-  
+
   public getResultById(id: IResultItem['id']): IResultItem | undefined {
     const items = this.response.items as unknown as IResultItem[];
 
@@ -790,14 +790,18 @@ export class SearchResultsService {
   }
 
   private subscribeToSortChange(): void {
-    this.sortResultsService.sortSettings.subscribe(() => {
-      this.setSearchResults();
+    this.sortResultsService.sortSettings.subscribe((res) => {
+      if (res !== null) {
+        this.setSearchResults();
+      }
     });
   }
 
   private subscribeToFilterChange(): void {
-    this.filterByWordService.filterWord.subscribe(() => {
-      this.setSearchResults();
+    this.filterByWordService.filterWord.subscribe((res) => {
+      if (res !== null) {
+        this.setSearchResults();
+      }
     });
   }
 

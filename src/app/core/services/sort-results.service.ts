@@ -9,11 +9,8 @@ import { SortNameEnum } from '../../shared/models/enums/sort.name.enum';
   providedIn: 'root',
 })
 export class SortResultsService {
+  public sortSettings: BehaviorSubject<ISortSettings | null> = new BehaviorSubject<ISortSettings | null>(null);
   private resultsList: IResultItem[] = [];
-  public sortSettings: BehaviorSubject<ISortSettings> = new BehaviorSubject<ISortSettings>({
-    sortName: SortNameEnum.DATE,
-    sortDirection: SortDirectionEnum.INCREASING,
-  });
 
   constructor() {
   }
@@ -25,7 +22,7 @@ export class SortResultsService {
   delegateSort(resultsList: IResultItem[]): IResultItem[] {
     this.resultsList = resultsList;
 
-    if (!this.sortSettings) {
+    if (!this.sortSettings.value) {
       return resultsList;
     }
 
@@ -36,10 +33,10 @@ export class SortResultsService {
     }
 
     switch (sortName) {
-      case 'DATE': {
+      case SortNameEnum.DATE: {
         return this.sortByDate(sortDirection);
       }
-      case 'VIEWS': {
+      case SortNameEnum.VIEWS: {
         return this.sortByCountOfView(sortDirection);
       }
       default: {
