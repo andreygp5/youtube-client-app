@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss']
+  styleUrls: ['./not-found.component.scss'],
 })
-export class NotFoundComponent implements OnInit {
+export class NotFoundComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private router: Router) {
   }
 
+  goHome() {
+    this.router.navigate(['youtube']).then();
+  }
 }
