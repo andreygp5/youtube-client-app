@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { AuthTokenService } from './auth-token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getIsLoggedIn());
+
   private TEST_EMAIL: string = 'test@gmail.com';
   private TEST_PASSWORD: string = 'password';
 
-  constructor(private authTokenService: AuthTokenService) {
+  constructor(private authTokenService: AuthTokenService, private router: Router) {
   }
 
   public checkCredentialsValid(email: string, password: string) {
@@ -20,11 +23,18 @@ export class AuthService {
     return new Observable<boolean>(subscriber => {
       if (this.checkCredentialsValid(email, password)) {
         this.authTokenService.setToken(`${email}&&${password}`);
+        this.isLoggedIn.next(true);
         subscriber.next(true);
       } else {
         subscriber.next(false);
       }
     });
+  }
+
+  public logOutUser(): void {
+    this.authTokenService.removeToken();
+    this.isLoggedIn.next(false);
+    this.router.navigate(['auth/login']).then();
   }
 
   public getIsLoggedIn(): boolean {

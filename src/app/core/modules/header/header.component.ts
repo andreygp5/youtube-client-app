@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   public isSettingsHidden: boolean = true;
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   public toggleSettings(): void {
@@ -16,5 +17,14 @@ export class HeaderComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.subscribeToLoggingIn();
+  }
+
+  private subscribeToLoggingIn(): void {
+    this.authService.isLoggedIn.subscribe((res) => {
+      if (!res) {
+        this.isSettingsHidden = true;
+      }
+    })
   }
 }

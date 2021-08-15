@@ -1,6 +1,13 @@
 <div class='profile-wrapper'>
-  <p class='user-name'>Your name</p>
-  <button aria-label='Example icon button with a menu icon' color='primary' mat-mini-fab>
+  <p class='user-email'>{{ userEmail }}</p>
+  <button [matMenuTriggerFor]='menu' color='primary' mat-mini-fab>
     <mat-icon>person</mat-icon>
   </button>
+
+  <mat-menu #menu='matMenu'>
+    <button (click)='logOutUser()' *ngIf='authService.getIsLoggedIn(); else loginBtn' mat-menu-item>Logout</button>
+    <ng-template #loginBtn>
+      <button (click)='goToLoginPage()' mat-menu-item>Login</button>
+    </ng-template>
+  </mat-menu>
 </div>

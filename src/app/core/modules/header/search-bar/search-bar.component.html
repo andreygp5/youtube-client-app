@@ -1,10 +1,29 @@
 <div class='search-wrapper'>
   <app-logo></app-logo>
   <div class='search'>
-    <input class='search__input' placeholder='What are you want to find out?' type='text'>
-    <button (click)='setSearchResults()' class='search__btn' color='primary' mat-flat-button>Search</button>
+    <input
+      class='search__input'
+      placeholder='What are you want to find out?'
+      type='text'
+      [readOnly]='!authService.getIsLoggedIn()'
+    />
+    <button
+      (click)='setSearchResults()'
+      class='search__btn'
+      color='primary'
+      mat-flat-button
+      [disabled]='!authService.getIsLoggedIn()'
+    >
+      Search
+    </button>
   </div>
-  <button (click)='toggleSettings()' class='trigger-settings' color='primary' mat-icon-button>
+  <button
+    (click)='toggleSettings()'
+    class='trigger-settings'
+    color='primary'
+    mat-icon-button
+    [disabled]='!authService.getIsLoggedIn()'
+  >
     <mat-icon>filter_list</mat-icon>
   </button>
 </div>
