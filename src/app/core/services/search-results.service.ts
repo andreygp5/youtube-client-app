@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
 import { FilterByWordService } from './filter-by-word.service';
 import { SortResultsService } from './sort-results.service';
@@ -6,7 +7,8 @@ import { SortResultsService } from './sort-results.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ResultsService {
+export class SearchResultsService {
+  public searchResults: BehaviorSubject<IResultItem[]> = new BehaviorSubject<IResultItem[]>([]);
   private response = {
     'kind': 'youtube#videoListResponse',
     'etag': '"Fznwjl6JEQdo1MGvHOGaz_YanRU/Cmodw7c5XPTM8Yg3kMXelihxek4"',
@@ -759,13 +761,14 @@ export class ResultsService {
       },
     ],
   };
-
   private transformFunctions: ((items: IResultItem[]) => IResultItem[])[] = [
     this.applySort.bind(this),
     this.applyFilterByWord.bind(this),
   ];
 
   constructor(private filterByWordService: FilterByWordService, private sortResultsService: SortResultsService) {
+    this.subscribeToSortChange();
+    this.subscribeToFilterChange();
   }
 
   public transformResults(resultItems: IResultItem[]): IResultItem[] {
@@ -776,8 +779,20 @@ export class ResultsService {
     return resultItemsCopy;
   }
 
-  public getCards(): IResultItem[] {
-    return this.response.items as unknown as IResultItem[];
+  public setSearchResults(): void {
+    this.searchResults.next(this.transformResults(this.response.items as unknown as IResultItem[]));
+  }
+
+  private subscribeToSortChange(): void {
+    this.sortResultsService.sortSettings.subscribe(() => {
+      this.setSearchResults();
+    });
+  }
+
+  private subscribeToFilterChange(): void {
+    this.filterByWordService.filterWord.subscribe(() => {
+      this.setSearchResults();
+    });
   }
 
   private applySort(resultItems: IResultItem[]): IResultItem[] {

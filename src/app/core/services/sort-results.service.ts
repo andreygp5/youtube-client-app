@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
 import { SortDirectionEnum } from '../../shared/models/enums/sort.direction.enum';
 import { ISortSettings } from '../../shared/models/interfaces/sort.settings.interface';
+import { SortNameEnum } from '../../shared/models/enums/sort.name.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SortResultsService {
   private resultsList: IResultItem[] = [];
-  private sortSettings?: ISortSettings;
+  public sortSettings: BehaviorSubject<ISortSettings> = new BehaviorSubject<ISortSettings>({
+    sortName: SortNameEnum.DATE,
+    sortDirection: SortDirectionEnum.INCREASING,
+  });
 
   constructor() {
   }
 
   setSortSettings(sortSettings: ISortSettings): void {
-    this.sortSettings = sortSettings;
+    this.sortSettings.next(sortSettings);
   }
 
   delegateSort(resultsList: IResultItem[]): IResultItem[] {
@@ -24,7 +29,7 @@ export class SortResultsService {
       return resultsList;
     }
 
-    const { sortName, sortDirection } = this.sortSettings;
+    const { sortName, sortDirection } = this.sortSettings.value;
 
     if (!sortName || !sortDirection) {
       return this.resultsList;

@@ -1,8 +1,11 @@
-<p>Results List</p>
-<div *ngIf='itemsList.length' class='grid'>
+<div *ngIf='$itemsList.value.length; else infoMsg' class='grid'>
   <app-results-item
-    *ngFor='let item of itemsList'
+    *ngFor='let item of $itemsList | async'
     [item]='item'
   >
   </app-results-item>
 </div>
+
+<ng-template #infoMsg>
+  <p class='info-msg'>No results found. It would be nice, if you will search something new)</p>
+</ng-template>

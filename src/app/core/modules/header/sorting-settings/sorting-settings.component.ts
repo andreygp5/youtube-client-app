@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SortNameEnum } from '../../../../shared/models/enums/sort.name.enum';
 import { SortDirectionEnum } from '../../../../shared/models/enums/sort.direction.enum';
-import { ISortSettings } from '../../../../shared/models/interfaces/sort.settings.interface';
+import { SortResultsService } from '../../../services/sort-results.service';
 
 @Component({
   selector: 'app-sorting-settings',
@@ -10,7 +10,6 @@ import { ISortSettings } from '../../../../shared/models/interfaces/sort.setting
 })
 export class SortingSettingsComponent {
   @Input() public isHidden!: boolean;
-  @Output() public didSettingsChange = new EventEmitter<ISortSettings>();
 
   // Need this to use enums in template
   public sortNameEnum = SortNameEnum;
@@ -19,7 +18,7 @@ export class SortingSettingsComponent {
   public checkedSortName: SortNameEnum | undefined;
   public checkedSortDirection: SortDirectionEnum | undefined;
 
-  constructor() {
+  constructor(private sortSettingsService: SortResultsService) {
   }
 
   public onSortNameChange(buttonValue: SortNameEnum | undefined): void {
@@ -31,7 +30,7 @@ export class SortingSettingsComponent {
         this.checkedSortDirection = SortDirectionEnum.INCREASING;
       }
 
-      this.emitSortSettingsChange();
+      this.setSortSettings();
     }
   }
 
@@ -44,12 +43,12 @@ export class SortingSettingsComponent {
         this.checkedSortName = SortNameEnum.DATE;
       }
 
-      this.emitSortSettingsChange();
+      this.setSortSettings();
     }
   }
 
-  private emitSortSettingsChange(): void {
-    this.didSettingsChange.emit({
+  private setSortSettings() {
+    this.sortSettingsService.setSortSettings({
       sortName: this.checkedSortName,
       sortDirection: this.checkedSortDirection,
     });

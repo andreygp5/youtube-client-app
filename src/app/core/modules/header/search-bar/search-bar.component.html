@@ -2,9 +2,9 @@
   <app-logo></app-logo>
   <div class='search'>
     <input class='search__input' placeholder='What are you want to find out?' type='text'>
-    <button class='search__btn' color='primary' (click)='search()' mat-flat-button>Search</button>
+    <button (click)='setSearchResults()' class='search__btn' color='primary' mat-flat-button>Search</button>
   </div>
-  <button class='trigger-settings' color='primary' mat-icon-button (click)='toggleSettings()'>
+  <button (click)='toggleSettings()' class='trigger-settings' color='primary' mat-icon-button>
     <mat-icon>filter_list</mat-icon>
   </button>
 </div>

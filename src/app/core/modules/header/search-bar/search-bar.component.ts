@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IResultItem } from '../../../../shared/models/interfaces/result.item.inteface';
-import { ResultsService } from '../../../services/results.service';
+import { SearchResultsService } from '../../../services/search-results.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,7 +11,7 @@ export class SearchBarComponent implements OnInit {
   @Output() public didToggleSettings = new EventEmitter<boolean>();
   @Output() public didSearch = new EventEmitter<IResultItem[]>();
 
-  constructor(private resultsService: ResultsService) {
+  constructor(private searchResultsService: SearchResultsService) {
   }
 
   public ngOnInit(): void {
@@ -21,7 +21,7 @@ export class SearchBarComponent implements OnInit {
     this.didToggleSettings.emit();
   }
 
-  public search(): void {
-    this.didSearch.emit(this.resultsService.getCards());
+  public setSearchResults(): void {
+    this.searchResultsService.setSearchResults();
   }
 }
