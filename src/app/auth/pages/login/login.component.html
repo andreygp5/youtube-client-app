@@ -1,2 +1,21 @@
-<p>login works!</p>
-<app-login-form></app-login-form>
+<h2 class='title'>Login Page</h2>
+
+<div class='form-container'>
+  <form (ngSubmit)='onFormSubmit()' class='form' [formGroup]="loginForm">
+    <div class='form__row'>
+      <mat-form-field appearance='standard'>
+        <mat-label>Email</mat-label>
+        <input formControlName='email' matInput required type='email' />
+      </mat-form-field>
+    </div>
+
+    <div class='form__row'>
+      <mat-form-field appearance='standard'>
+        <mat-label>Password</mat-label>
+        <input formControlName='password' matInput required type='password' />
+      </mat-form-field>
+    </div>
+
+    <button color='primary' mat-flat-button type='submit' [disabled]='isButtonDisabled'>Login</button>
+  </form>
+</div>

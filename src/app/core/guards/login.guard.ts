@@ -11,7 +11,7 @@ export class LoginGuard implements CanActivate, CanActivateChild {
   }
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    const isLoggedIn = this.authService.isLoggedIn();
+    const isLoggedIn = this.authService.getIsLoggedIn();
     if (!isLoggedIn) {
       return true;
     }
