@@ -5,10 +5,14 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
+    HeaderModule,
+  ],
+  exports: [
+    NotFoundComponent,
     HeaderModule,
   ],
 })
