@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { HeaderModule } from './modules/header/header.module';
-import { ResultsListModule } from './modules/results-list/results-list.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +9,7 @@ import { ResultsListModule } from './modules/results-list/results-list.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
-    HeaderModule,
-    ResultsListModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

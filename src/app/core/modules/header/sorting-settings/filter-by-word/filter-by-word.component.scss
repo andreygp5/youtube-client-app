@@ -1,0 +1,13 @@
+@use '../../../../../../../node_modules/@angular/material/index' as mat;
+
+.word-input {
+  height: 30px;
+  padding: 10px 5px;
+
+  border: 1px solid mat.get-color-from-palette(mat.$indigo-palette, 100);
+  outline: none;
+  border-radius: 5px;
+
+  font-family: inherit;
+  font-size: inherit;
+}

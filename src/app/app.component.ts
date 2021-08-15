@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IResultItem } from './interfaces/result.item.inteface';
+import { IResultItem } from './shared/models/interfaces/result.item.inteface';
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from './material/material.module';
-import { LogoComponent } from './logo/logo.component';
+import { MaterialModule } from './modules/material/material.module';
+import { LogoComponent } from './components/logo/logo.component';
 import { TrimTextPipe } from './pipes/trim-text.pipe';
 
 @NgModule({
