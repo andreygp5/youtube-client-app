@@ -17,10 +17,4 @@ export class ResultsListComponent implements OnInit {
   public ngOnInit(): void {
     this.$itemsList = this.resultsService.resultItems;
   }
-
-  // private subscribeToItemsSearch(): void {
-  //   this.resultsService.resultItems.subscribe((res) => {
-  //     this.itemsList = res;
-  //   })
-  // }
 }

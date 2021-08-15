@@ -1,1 +1,19 @@
-<p>video-details works!</p>
+<button (click)='goBack()' class='back-btn' mat-icon-button>
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<div *ngIf='videoItem' class='details-card'>
+  <div class='details-card__image-container'>
+    <img alt='Image' class='details-card__image' src='{{ videoItem.snippet.thumbnails.maxres.url }}'>
+  </div>
+
+  <div class='details-card__info'>
+    <div class='details-card__header'>
+      <h2 class='details-card__title'>{{ videoItem.snippet.title }}</h2>
+      <p class='details-card__date'>{{ videoItem.snippet.publishedAt | date }}</p>
+    </div>
+
+    <p class='details-card__text'>{{ videoItem.snippet.description }}</p>
+
+    <app-item-stats [stats]='videoItem.statistics'></app-item-stats>
+  </div>
+</div>

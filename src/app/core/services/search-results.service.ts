@@ -770,6 +770,12 @@ export class SearchResultsService {
     this.subscribeToSortChange();
     this.subscribeToFilterChange();
   }
+  
+  public getResultById(id: IResultItem['id']): IResultItem | undefined {
+    const items = this.response.items as unknown as IResultItem[];
+
+    return items.find((item) => item.id === id);
+  }
 
   public transformResults(resultItems: IResultItem[]): IResultItem[] {
     let resultItemsCopy = resultItems;

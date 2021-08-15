@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.back-btn {
+  margin-bottom: 30px;
+}
+
+.details-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 30px;
+
+  @media (max-width: 900px)  {
+    grid-template-columns: 100%;
+    grid-row-gap: 40px;
+  }
+
+  &__image-container {
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__header {
+    margin-bottom: 40px;
+  }
+
+  &__text {
+    margin-bottom: 40px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
