@@ -16,7 +16,11 @@ export class FilterByWordPipe implements PipeTransform {
 
   transform(videosList: IResultItem[] | null): IResultItem[] {
     if (videosList) {
-      return videosList.filter((video) => video.snippet.title.includes(this.filterWord.value || ''));
+      return videosList.filter((video) => {
+        const lowerCaseTitle = video.snippet.title.toLowerCase();
+        const lowerCaseFilterWord = this.filterWord.value?.toLowerCase();
+        return lowerCaseTitle.includes(lowerCaseFilterWord || '')
+      });
     }
 
     return [];

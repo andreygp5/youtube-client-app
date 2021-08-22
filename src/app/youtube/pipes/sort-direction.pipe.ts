@@ -5,7 +5,8 @@ import { ISortSettings } from '../../shared/models/interfaces/sort.settings.inte
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
 
 @Pipe({
-  name: 'sortDirection'
+  name: 'sortDirection',
+  pure: false,
 })
 export class SortDirectionPipe implements PipeTransform {
   private sortSettings: BehaviorSubject<ISortSettings | null> = new BehaviorSubject<ISortSettings | null>(null);
@@ -19,7 +20,11 @@ export class SortDirectionPipe implements PipeTransform {
       return this.applySortDirection(videosList);
     }
 
-    return [];
+    if (!videosList) {
+      return [];
+    }
+
+    return videosList;
   }
 
   private applySortDirection(videosList: IResultItem[]): IResultItem[] {

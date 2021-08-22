@@ -29,6 +29,7 @@ export class VideoResultsService {
   private setVideosList(searchInputValue: string, sortSettings: SortNameEnum | undefined): void {
     this.youtubeSearchService.getVideosList(searchInputValue, sortSettings)
       .subscribe((res) => {
+        console.log(res);
         this.videosList.next(res);
       });
   }
