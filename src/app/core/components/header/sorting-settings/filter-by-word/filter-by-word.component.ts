@@ -12,8 +12,7 @@ export class FilterByWordComponent {
   constructor(private filterByWordService: FilterByWordService) {
   }
 
-  public onFilterWordChange(newValue: string): void {
-    this.filterWordInput = newValue;
-    this.filterByWordService.setWordFilter(newValue);
+  public onFilterWordChange(): void {
+    this.filterByWordService.setWordFilter(this.filterWordInput);
   }
 }
