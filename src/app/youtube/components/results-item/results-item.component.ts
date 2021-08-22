@@ -12,7 +12,7 @@ export class ResultsItemComponent implements OnInit {
   public title: string = '';
   public description: string = '';
 
-  public publishedAt: string = '';
+  public publishedAt: Date = new Date();
 
   public imageUrl: string = '';
 
@@ -29,7 +29,7 @@ export class ResultsItemComponent implements OnInit {
 
     this.title = title;
     this.description = description;
-    this.publishedAt = publishedAt;
+    this.publishedAt = new Date(publishedAt);
 
     this.imageUrl = imageUrl;
   }

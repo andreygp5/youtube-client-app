@@ -1,37 +1,26 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
+import * as moment from 'moment';
 
 @Directive({
   selector: '[appDateBorder]',
 })
-export class DateBorderDirective implements OnInit {
-  private MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
+export class DateBorderDirective {
+  @HostBinding('style.border-color')
+  public borderColor: 'green' | 'blue' | 'red' = 'green';
 
-  @Input() public dateString!: string;
-
-  private dateObj: Date = new Date();
-  private borderColor: 'green' | 'blue' | 'red' = 'green';
-
-  constructor(private el: ElementRef) {
+  @Input()
+  set date(videoDate: Date) {
+    const daySincePublished = moment().diff(moment(videoDate), 'days');
+    this.setBorderColor(daySincePublished);
   }
 
-  public ngOnInit(): void {
-    this.dateObj = new Date(this.dateString);
-
-    this.setBorderColor();
-  }
-
-  private setBorderColor(): void {
-    const now = new Date();
-    const daySincePublished = (now.getTime() - this.dateObj.getTime()) / this.MILLISECONDS_IN_A_DAY;
-
+  private setBorderColor(daySincePublished: number): void {
     if (daySincePublished < 7) {
       this.borderColor = 'blue';
-    } else if (daySincePublished < 31) {
+    } else if (daySincePublished < 30) {
       this.borderColor = 'green';
-    } else {
+    } else if (daySincePublished > 180) {
       this.borderColor = 'red';
     }
-
-    this.el.nativeElement.style.borderColor = this.borderColor;
   }
 }
