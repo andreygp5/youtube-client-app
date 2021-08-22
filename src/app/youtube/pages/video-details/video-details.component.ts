@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IResultItem } from '../../../shared/models/interfaces/result.item.inteface';
-import { ResultsService } from '../../services/results.service';
+import { YoutubeSearchService } from '../../services/youtube-search.service';
 
 @Component({
   selector: 'app-video-details',
@@ -16,7 +16,7 @@ export class VideoDetailsComponent implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
-    private resultsService: ResultsService,
+    private youtubeSearchService: YoutubeSearchService,
   ) {
   }
 
@@ -37,6 +37,8 @@ export class VideoDetailsComponent implements OnInit {
   }
 
   private setItemById(id: IResultItem['id']): void {
-    this.videoItem = this.resultsService.getItemById(id);
+    this.youtubeSearchService.getVideoById(id).subscribe((res) => {
+      this.videoItem = res;
+    });
   }
 }

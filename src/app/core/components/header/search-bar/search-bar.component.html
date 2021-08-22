@@ -2,27 +2,20 @@
   <app-logo></app-logo>
   <div class='search'>
     <input
-      class='search__input'
-      placeholder='What are you want to find out?'
-      type='text'
+      (input)='setSearchInput()'
+      [(ngModel)]='searchInput'
       [readOnly]='!authService.getIsLoggedIn()'
+      class='search__input'
+      placeholder='What do you want to find out?'
+      type='text'
     />
-    <button
-      (click)='setSearchResults()'
-      class='search__btn'
-      color='primary'
-      mat-flat-button
-      [disabled]='!authService.getIsLoggedIn()'
-    >
-      Search
-    </button>
   </div>
   <button
     (click)='toggleSettings()'
+    [disabled]='!authService.getIsLoggedIn()'
     class='trigger-settings'
     color='primary'
     mat-icon-button
-    [disabled]='!authService.getIsLoggedIn()'
   >
     <mat-icon>filter_list</mat-icon>
   </button>

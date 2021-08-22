@@ -1,4 +1,4 @@
 export enum SortNameEnum {
-  DATE = 'DATE',
-  VIEWS = 'VIEWS'
+  date = 'date',
+  viewCount = 'viewCount'
 }

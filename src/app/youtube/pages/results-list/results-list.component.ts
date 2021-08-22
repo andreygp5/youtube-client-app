@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IResultItem } from '../../../shared/models/interfaces/result.item.inteface';
-import { ResultsService } from '../../services/results.service';
+import { VideoResultsService } from '../../services/video-results.service';
 
 @Component({
   selector: 'app-results-list',
@@ -11,10 +11,10 @@ import { ResultsService } from '../../services/results.service';
 export class ResultsListComponent implements OnInit {
   public $itemsList: BehaviorSubject<IResultItem[]> = new BehaviorSubject<IResultItem[]>([]);
 
-  constructor(private resultsService: ResultsService) {
+  constructor(private resultsService: VideoResultsService) {
   }
 
   public ngOnInit(): void {
-    this.$itemsList = this.resultsService.resultItems;
+    this.$itemsList = this.resultsService.videosList;
   }
 }

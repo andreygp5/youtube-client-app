@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { SortNameEnum } from '../../../../shared/models/enums/sort.name.enum';
 import { SortDirectionEnum } from '../../../../shared/models/enums/sort.direction.enum';
-import { SortResultsService } from '../../../services/sort-results.service';
+import { SearchValuesService } from '../../../services/search-values.service';
 
 @Component({
   selector: 'app-sorting-settings',
@@ -18,11 +18,15 @@ export class SortingSettingsComponent {
   public checkedSortName: SortNameEnum | undefined;
   public checkedSortDirection: SortDirectionEnum | undefined;
 
-  constructor(private sortSettingsService: SortResultsService) {
+  constructor(private searchValuesService: SearchValuesService) {
   }
 
   public onSortNameChange(buttonValue: SortNameEnum | undefined): void {
     if (buttonValue) {
+      if (this.checkedSortName === buttonValue) {
+        return;
+      }
+
       this.checkedSortName = buttonValue;
 
       // If sort direction hasn't been chosen
@@ -36,11 +40,15 @@ export class SortingSettingsComponent {
 
   public onSortDirectionChange(buttonValue: SortDirectionEnum | undefined): void {
     if (buttonValue) {
+      if (this.checkedSortDirection === buttonValue) {
+        return;
+      }
+
       this.checkedSortDirection = buttonValue;
 
       // If sort name hasn't been chosen
       if (!this.checkedSortName) {
-        this.checkedSortName = SortNameEnum.DATE;
+        this.checkedSortName = SortNameEnum.date;
       }
 
       this.setSortSettings();
@@ -48,7 +56,7 @@ export class SortingSettingsComponent {
   }
 
   private setSortSettings() {
-    this.sortSettingsService.setSortSettings({
+    this.searchValuesService.setSortSettings({
       sortName: this.checkedSortName,
       sortDirection: this.checkedSortDirection,
     });

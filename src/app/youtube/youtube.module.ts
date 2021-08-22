@@ -8,6 +8,7 @@ import { ResultsListComponent } from './pages/results-list/results-list.componen
 import { DateBorderDirective } from './directives/date-border.directive';
 import { VideoDetailsComponent } from './pages/video-details/video-details.component';
 import { FilterByWordPipe } from './pipes/filter-by-word.pipe';
+import { SortDirectionPipe } from './pipes/sort-direction.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FilterByWordPipe } from './pipes/filter-by-word.pipe';
     DateBorderDirective,
     VideoDetailsComponent,
     FilterByWordPipe,
+    SortDirectionPipe,
   ],
   imports: [
     CommonModule,

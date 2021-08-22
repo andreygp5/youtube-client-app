@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
-import { FilterByWordService } from '../../core/services/filter-by-word.service';
+import { SearchValuesService } from '../../core/services/search-values.service';
 
 @Pipe({
   name: 'filterByWord',
@@ -10,8 +10,8 @@ import { FilterByWordService } from '../../core/services/filter-by-word.service'
 export class FilterByWordPipe implements PipeTransform {
   private filterWord: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor(private filterByWordService: FilterByWordService) {
-    this.filterWord = this.filterByWordService.filterWord;
+  constructor(private searchValuesService: SearchValuesService) {
+    this.filterWord = this.searchValuesService.filterWord;
   }
 
   transform(videosList: IResultItem[] | null): IResultItem[] {
