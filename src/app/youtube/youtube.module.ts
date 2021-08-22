@@ -7,6 +7,7 @@ import { ResultsItemComponent } from './components/results-item/results-item.com
 import { ResultsListComponent } from './pages/results-list/results-list.component';
 import { DateBorderDirective } from './directives/date-border.directive';
 import { VideoDetailsComponent } from './pages/video-details/video-details.component';
+import { FilterByWordPipe } from './pipes/filter-by-word.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { VideoDetailsComponent } from './pages/video-details/video-details.compo
     ResultsListComponent,
     DateBorderDirective,
     VideoDetailsComponent,
+    FilterByWordPipe,
   ],
   imports: [
     CommonModule,

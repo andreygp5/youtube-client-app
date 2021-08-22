@@ -762,7 +762,6 @@ export class SearchResultsService {
     ],
   };
   private transformFunctions: ((items: IResultItem[]) => IResultItem[])[] = [
-    this.applySort.bind(this),
     this.applyFilterByWord.bind(this),
   ];
 
@@ -803,10 +802,6 @@ export class SearchResultsService {
         this.setSearchResults();
       }
     });
-  }
-
-  private applySort(resultItems: IResultItem[]): IResultItem[] {
-    return this.filterByWordService.filterByWord(resultItems);
   }
 
   private applyFilterByWord(resultItems: IResultItem[]): IResultItem[] {
