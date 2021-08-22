@@ -12,6 +12,6 @@ export class NotFoundComponent {
   }
 
   goHome() {
-    this.router.navigate(['youtube']).then();
+    this.router.navigate(['youtube']);
   }
 }

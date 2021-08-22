@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate, CanActivateChild {
       return true;
     }
 
-    this.router.navigate(['/youtube']).then();
+    this.router.navigate(['/youtube']);
     return false;
   }
 

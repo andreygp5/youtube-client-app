@@ -24,7 +24,7 @@ export class ResultsService {
     const desiredItem = this.searchResultsService.getResultById(id);
 
     if (!desiredItem) {
-      this.router.navigate(['not-found-page']).then();
+      this.router.navigate(['not-found-page']);
     }
 
     return desiredItem;

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.logInUser(email, password).subscribe((res) => {
       if (res) {
-        this.router.navigate(['youtube']).then();
+        this.router.navigate(['youtube']);
       } else {
         this.snackbarService.showMsg('Not valid credentials');
       }

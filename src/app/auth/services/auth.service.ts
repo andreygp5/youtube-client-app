@@ -35,7 +35,7 @@ export class AuthService {
   public logOutUser(): void {
     this.authTokenService.removeToken();
     this.isLoggedIn.next(false);
-    this.router.navigate(['auth/login']).then();
+    this.router.navigate(['auth/login']);
   }
 
   public getIsLoggedIn(): boolean {

@@ -27,7 +27,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public goToLoginPage(): void {
-    this.router.navigate(['auth/login']).then();
+    this.router.navigate(['auth/login']);
   }
 
   private subscribeToToken(): void {
