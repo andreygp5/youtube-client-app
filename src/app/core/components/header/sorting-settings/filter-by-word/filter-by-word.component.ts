@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchValuesService } from '../../../../services/search-values.service';
+import { Store } from '@ngrx/store';
+import { searchSetFilterWord } from '../../../../../store/actions/search.actions';
 
 @Component({
   selector: 'app-filter-by-word',
@@ -9,10 +10,10 @@ import { SearchValuesService } from '../../../../services/search-values.service'
 export class FilterByWordComponent {
   public filterWordInput: string = '';
 
-  constructor(private searchValuesService: SearchValuesService) {
+  constructor(private store: Store) {
   }
 
   public onFilterWordChange(): void {
-    this.searchValuesService.setFilterWord(this.filterWordInput);
+    this.store.dispatch(searchSetFilterWord({ filterWord: this.filterWordInput }))
   }
 }

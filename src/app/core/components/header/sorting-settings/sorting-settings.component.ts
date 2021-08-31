@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { SortNameEnum } from '../../../../shared/models/enums/sort.name.enum';
 import { SortDirectionEnum } from '../../../../shared/models/enums/sort.direction.enum';
-import { SearchValuesService } from '../../../services/search-values.service';
+import { searchProcessSortSettings } from '../../../../store/actions/search.actions';
+import { ISortSettings } from '../../../../shared/models/interfaces/sort.settings.interface';
 
 @Component({
   selector: 'app-sorting-settings',
@@ -18,7 +20,7 @@ export class SortingSettingsComponent {
   public checkedSortName: SortNameEnum | undefined;
   public checkedSortDirection: SortDirectionEnum | undefined;
 
-  constructor(private searchValuesService: SearchValuesService) {
+  constructor(private store: Store) {
   }
 
   public onSortNameChange(buttonValue: SortNameEnum | undefined): void {
@@ -56,9 +58,11 @@ export class SortingSettingsComponent {
   }
 
   private setSortSettings() {
-    this.searchValuesService.setSortSettings({
+    const sortSettings: ISortSettings = {
       sortName: this.checkedSortName,
       sortDirection: this.checkedSortDirection,
-    });
+    }
+
+    this.store.dispatch(searchProcessSortSettings({ sortSettings }));
   }
 }

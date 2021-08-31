@@ -1,25 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
-import { SearchValuesService } from '../../core/services/search-values.service';
 
 @Pipe({
   name: 'filterByWord',
-  pure: false
+  pure: false,
 })
 export class FilterByWordPipe implements PipeTransform {
-  private filterWord: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-
-  constructor(private searchValuesService: SearchValuesService) {
-    this.filterWord = this.searchValuesService.filterWord;
+  constructor() {
   }
 
-  transform(videosList: IResultItem[] | null): IResultItem[] {
+  transform(videosList: IResultItem[] | null, filterWord: string | null): IResultItem[] {
     if (videosList) {
+      if (!filterWord) {
+        return videosList;
+      }
+
       return videosList.filter((video) => {
         const lowerCaseTitle = video.snippet.title.toLowerCase();
-        const lowerCaseFilterWord = this.filterWord.value?.toLowerCase();
-        return lowerCaseTitle.includes(lowerCaseFilterWord || '')
+        const lowerCaseFilterWord = filterWord.toLowerCase();
+        return lowerCaseTitle.includes(lowerCaseFilterWord || '');
       });
     }
 

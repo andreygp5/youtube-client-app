@@ -8,12 +8,16 @@ import { IYoutubeParamsForList, IYoutubeParamsForVideo } from '../../shared/mode
 import { IInitialResults } from '../../shared/models/interfaces/initial.results.interface';
 import { IFullResultItemInterface } from '../../shared/models/interfaces/full.result.item.interface';
 import { ITEMS_PER_PAGE } from '../../core/constants/youtube';
+import { HttpHelperService } from '../../core/services/http-helper.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class YoutubeSearchService {
-  constructor(private http: HttpClient) {
+export class YoutubeApiService {
+  constructor(
+    private http: HttpClient,
+    private httpHelper: HttpHelperService,
+  ) {
   }
 
   public getVideoById(id: IResultItem['id']): Observable<IResultItem> {
@@ -32,17 +36,13 @@ export class YoutubeSearchService {
     );
   }
 
-  private getHttpParams(paramsObj: { [key: string]: string | number }): HttpParams {
-    return Object.entries(paramsObj).reduce((params, [key, value]) => params.append(key, value), new HttpParams());
-  }
-
   private getParamsForVideo(id: IResultItem['id']): HttpParams {
     const paramsObj: IYoutubeParamsForVideo = {
       part: 'snippet,statistics',
       id,
     };
 
-    return this.getHttpParams(paramsObj as unknown as { [key: string]: string | number });
+    return this.httpHelper.getHttpParams(paramsObj as unknown as { [key: string]: string | number });
   }
 
   private getParamsForList(q: string, order: SortNameEnum | undefined): HttpParams {
@@ -56,6 +56,6 @@ export class YoutubeSearchService {
       paramsObj.order = order;
     }
 
-    return this.getHttpParams(paramsObj as unknown as { [key: string]: string | number });
+    return this.httpHelper.getHttpParams(paramsObj as unknown as { [key: string]: string | number });
   }
 }

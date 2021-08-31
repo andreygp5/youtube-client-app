@@ -17,10 +17,9 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-
         "airbnb-typescript/base",
-
-        "prettier"
+        "prettier",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -46,8 +45,12 @@
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-useless-constructor": "off",
         "@typescript-eslint/lines-between-class-members": "off",
-        "no-return-assign": "off"
-      }
+        "no-return-assign": "off",
+        "arrow-body-style": "off"
+      },
+      "plugins": [
+        "ngrx"
+      ]
     },
     {
       "files": [

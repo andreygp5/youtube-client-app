@@ -1,39 +1,34 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { SearchValuesService } from '../../core/services/search-values.service';
-import { ISortSettings } from '../../shared/models/interfaces/sort.settings.interface';
 import { IResultItem } from '../../shared/models/interfaces/result.item.inteface';
+import { SortDirectionEnum } from '../../shared/models/enums/sort.direction.enum';
 
 @Pipe({
   name: 'sortDirection',
   pure: false,
 })
 export class SortDirectionPipe implements PipeTransform {
-  private sortSettings: BehaviorSubject<ISortSettings | null> = new BehaviorSubject<ISortSettings | null>(null);
-
-  constructor(private searchValuesService: SearchValuesService) {
-    this.sortSettings = this.searchValuesService.sortSettings;
+  constructor() {
   }
 
-  transform(videosList: IResultItem[] | null): IResultItem[] {
-    if (this.sortSettings.value?.sortDirection && videosList) {
-      return this.applySortDirection(videosList);
-    }
-
+  transform(videosList: IResultItem[] | null, sortDirection: SortDirectionEnum | null | undefined): IResultItem[] {
     if (!videosList) {
       return [];
+    }
+
+    if (sortDirection && videosList) {
+      return this.applySortDirection(videosList, sortDirection);
     }
 
     return videosList;
   }
 
-  private applySortDirection(videosList: IResultItem[]): IResultItem[] {
-    switch (this.sortSettings.value?.sortDirection) {
+  private applySortDirection(videosList: IResultItem[], sortDirection: SortDirectionEnum | null | undefined): IResultItem[] {
+    switch (sortDirection) {
       case 'INCREASING': {
         return videosList;
       }
       case 'DECREASING': {
-        return videosList.reverse();
+        return videosList.slice().reverse();
       }
       default: {
         return videosList;

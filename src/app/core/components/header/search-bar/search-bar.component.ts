@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../../../auth/services/auth.service';
-import { SearchValuesService } from '../../../services/search-values.service';
+import { searchProcessInput } from '../../../../store/actions/search.actions';
 
 @Component({
   selector: 'app-search-bar',
@@ -14,7 +15,7 @@ export class SearchBarComponent {
 
   constructor(
     public authService: AuthService,
-    private searchValuesService: SearchValuesService,
+    private store: Store,
   ) {
   }
 
@@ -23,6 +24,6 @@ export class SearchBarComponent {
   }
 
   public setSearchInput(): void {
-    this.searchValuesService.setSearchInput(this.searchInput);
+    this.store.dispatch(searchProcessInput({ input: this.searchInput }));
   }
 }

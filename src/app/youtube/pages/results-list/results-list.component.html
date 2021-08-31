@@ -1,6 +1,6 @@
-<div *ngIf='$itemsList.value.length; else infoMsg' class='grid'>
+<div *ngIf='videosList$; else infoMsg' class='grid'>
   <app-results-item
-    *ngFor='let item of ($itemsList | async | filterByWord | sortDirection) '
+    *ngFor='let item of (videosList$ | async | filterByWord:(filterWord$ | async) | sortDirection:(sortDirection$ | async))'
     [item]='item'
   >
   </app-results-item>

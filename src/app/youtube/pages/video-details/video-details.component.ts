@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { IResultItem } from '../../../shared/models/interfaces/result.item.inteface';
-import { YoutubeSearchService } from '../../services/youtube-search.service';
+import { YoutubeApiService } from '../../services/youtube-api.service';
 
 @Component({
   selector: 'app-video-details',
@@ -16,7 +16,7 @@ export class VideoDetailsComponent implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
-    private youtubeSearchService: YoutubeSearchService,
+    private youtubeSearchService: YoutubeApiService,
   ) {
   }
 
