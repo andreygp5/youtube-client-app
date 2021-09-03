@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { MaterialModule } from './modules/material/material.module';
 import { LogoComponent } from './components/logo/logo.component';
 import { TrimTextPipe } from './pipes/trim-text.pipe';
@@ -13,6 +14,7 @@ import { TrimTextPipe } from './pipes/trim-text.pipe';
   imports: [
     CommonModule,
     MaterialModule,
+    RouterModule,
   ],
   exports: [
     MaterialModule,

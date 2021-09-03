@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    this.authService.logInUser(email, password).subscribe((res) => {
+    this.authService.login(email, password).subscribe((res) => {
       if (res) {
         this.router.navigate(['youtube']);
       } else {

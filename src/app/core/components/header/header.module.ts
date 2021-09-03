@@ -6,6 +6,7 @@ import { SortingSettingsComponent } from './sorting-settings/sorting-settings.co
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FilterByWordComponent } from './sorting-settings/filter-by-word/filter-by-word.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { AdminControlsComponent } from './admin-controls/admin-controls.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../../../shared/shared.module';
     SortingSettingsComponent,
     UserProfileComponent,
     FilterByWordComponent,
+    AdminControlsComponent,
   ],
   imports: [
     CommonModule,

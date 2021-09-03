@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   public logOutUser(): void {
-    this.authService.logOutUser();
+    this.authService.logout();
   }
 
   public goToLoginPage(): void {

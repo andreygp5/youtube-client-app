@@ -1,5 +1,8 @@
 <header class='header'>
-  <div class='header__container'>
+  <div class='header__container' [class.header__container_three-cols]='userRole === RoleEnum.ADMIN'>
+    <div class='header__admin-buttons' *ngIf='userRole === RoleEnum.ADMIN'>
+      <app-admin-controls></app-admin-controls>
+    </div>
     <div class='header__search'>
       <app-search-bar (didToggleSettings)='toggleSettings()'></app-search-bar>
       <app-sorting-settings

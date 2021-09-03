@@ -18,6 +18,14 @@
     justify-items: center;
     align-items: start;
     grid-template-columns: 1fr auto;
+
+    &_three-cols {
+      grid-template-columns: auto auto auto;
+    }
+  }
+
+  &__admin-buttons {
+    padding-top: 7px;
   }
 
   &__search {
