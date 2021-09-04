@@ -47,7 +47,8 @@
         "@typescript-eslint/lines-between-class-members": "off",
         "no-return-assign": "off",
         "arrow-body-style": "off",
-        "no-useless-return": "off"
+        "no-useless-return": "off",
+        "ngrx/no-store-subscription": "off"
       },
       "plugins": [
         "ngrx"
