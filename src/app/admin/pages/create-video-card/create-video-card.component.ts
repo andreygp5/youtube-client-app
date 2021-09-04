@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ICustomVideo } from '../../../shared/models/interfaces/custom.video.interface';
 import { customVideosProcessVideos } from '../../../store/actions/custom-videos.actions';
+import { SnackbarService } from '../../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-create-video-card',
@@ -24,10 +25,13 @@ export class CreateVideoCardComponent implements OnInit, OnDestroy {
     [this.videoLinkFormName]: new FormControl('', [Validators.required]),
   });
   public isSubmitButtonDisabled: boolean = true;
+  @ViewChild(FormGroupDirective) createForm: FormGroupDirective | undefined;
+
   private valueChangesSubscription: Subscription | undefined;
 
   constructor(
     private store: Store,
+    private snackbarService: SnackbarService,
   ) {
   }
 
@@ -39,11 +43,13 @@ export class CreateVideoCardComponent implements OnInit, OnDestroy {
     if (!this.form.valid) {
       return;
     }
+
     const currentTimeInMs: string = String(moment.now());
+    const title: string = this.form.get(this.titleFormName)?.value;
 
     const customVideo: ICustomVideo = {
       id: currentTimeInMs,
-      title: this.form.get(this.titleFormName)?.value,
+      title,
       description: this.form.get(this.descriptionFormName)?.value,
       imageLink: this.form.get(this.imageLinkFormName)?.value,
       videoLink: this.form.get(this.videoLinkFormName)?.value,
@@ -51,10 +57,17 @@ export class CreateVideoCardComponent implements OnInit, OnDestroy {
     };
 
     this.store.dispatch(customVideosProcessVideos({ customVideos: [customVideo] }));
+    this.snackbarService.showMsg(`Card ${title} added successfully`);
+    this.resetForm();
   }
 
   public ngOnDestroy(): void {
     this.unsubscribeFromValueChanges();
+  }
+
+  private resetForm(): void {
+    this.form.reset();
+    this.createForm?.resetForm();
   }
 
   private subscribeToValueChanges(): void {
