@@ -3,7 +3,7 @@
 </button>
 <div *ngIf='(videoItem$ | async) as videoItem' class='details-card'>
   <div class='details-card__image-container'>
-    <img alt='Image' class='details-card__image' src='{{ videoItem.snippet.thumbnails.maxres.url }}'>
+    <img alt='Image' class='details-card__image' src='{{ videoItem.snippet.thumbnails.high.url }}'>
   </div>
 
   <div class='details-card__info'>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TEST_EMAIL, TEST_PASSWORD } from '../../../core/constants/test.values';
+import { ADMIN_EMAIL, ADMIN_PASSWORD, TEST_EMAIL, TEST_PASSWORD } from '../../../core/constants/test.values';
 
 @Component({
   selector: 'app-test-values',
@@ -9,6 +9,9 @@ import { TEST_EMAIL, TEST_PASSWORD } from '../../../core/constants/test.values';
 export class TestValuesComponent implements OnInit {
   public TEST_EMAIL: string = TEST_EMAIL;
   public TEST_PASSWORD: string = TEST_PASSWORD;
+
+  public ADMIN_EMAIL: string = ADMIN_EMAIL;
+  public ADMIN_PASSWORD: string = ADMIN_PASSWORD;
 
   constructor() {
   }
