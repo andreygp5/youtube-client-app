@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { IResultItem } from '../../../shared/models/interfaces/result.item.inteface';
-import { YoutubeApiService } from '../../services/youtube-api.service';
+import { Store } from '@ngrx/store';
+import { selectVideoById } from '../../../store/selectors/youtube.selectors';
 
 @Component({
   selector: 'app-video-details',
@@ -11,34 +11,28 @@ import { YoutubeApiService } from '../../services/youtube-api.service';
   styleUrls: ['./video-details.component.scss'],
 })
 export class VideoDetailsComponent implements OnInit {
-  videoItem?: IResultItem;
+  public videoItem$ = this.store.select(selectVideoById(''));
 
   constructor(
     private location: Location,
     private route: ActivatedRoute,
-    private youtubeSearchService: YoutubeApiService,
+    private store: Store,
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.subscribeToRouteParams();
   }
 
-  subscribeToRouteParams(): void {
+  private subscribeToRouteParams(): void {
     this.route.paramMap
       .pipe(map((paramMap) => paramMap.get('id')))
       .subscribe((id) => {
-        this.setItemById(id || '');
+        this.videoItem$ = this.store.select(selectVideoById(id || ''));
       });
   }
 
   public goBack(): void {
     this.location.back();
-  }
-
-  private setItemById(id: IResultItem['id']): void {
-    this.youtubeSearchService.getVideoById(id).subscribe((res) => {
-      this.videoItem = res;
-    });
   }
 }
