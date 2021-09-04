@@ -14,4 +14,6 @@ export interface IResultItem {
   };
 
   statistics: IResultItemStats;
+
+  videoUrl?: string;
 }

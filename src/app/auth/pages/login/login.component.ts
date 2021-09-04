@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 
@@ -9,7 +10,7 @@ import { SnackbarService } from '../../../core/services/snackbar.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     ]),
   });
   public isButtonDisabled: boolean = false;
+  private valueChangesSubscription: Subscription | undefined;
 
   constructor(
     private authService: AuthService,
@@ -54,5 +56,13 @@ export class LoginComponent implements OnInit {
     this.loginForm.valueChanges.subscribe(() => {
       this.isButtonDisabled = !this.loginForm.valid;
     });
+  }
+
+  private unsubscribeFromValueChanges(): void {
+    this.valueChangesSubscription?.unsubscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribeFromValueChanges();
   }
 }

@@ -11,6 +11,7 @@ import { YoutubeApiInterceptor } from './youtube/interceptors/youtube-api.interc
 import { reducers } from './store/app.store';
 import { YoutubeEffects } from './store/effects/youtube.effects';
 import { SearchEffects } from './store/effects/search.effects';
+import { CustomVideosEffects } from './store/effects/custom-videos.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { SearchEffects } from './store/effects/search.effects';
     CoreModule,
     HttpClientModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([YoutubeEffects, SearchEffects]),
+    EffectsModule.forRoot([YoutubeEffects, SearchEffects, CustomVideosEffects]),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: YoutubeApiInterceptor, multi: true },

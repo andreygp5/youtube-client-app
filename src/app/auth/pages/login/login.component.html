@@ -1,6 +1,6 @@
 <h2 class='title'>Login Page</h2>
 <div class='form-container'>
-  <form (ngSubmit)='onFormSubmit()' class='form' [formGroup]="loginForm">
+  <form (ngSubmit)='onFormSubmit()' [formGroup]='loginForm' class='form'>
     <div class='form__row'>
       <mat-form-field appearance='standard'>
         <mat-label>Email</mat-label>
@@ -15,7 +15,7 @@
       </mat-form-field>
     </div>
 
-    <button color='primary' mat-flat-button type='submit' [disabled]='isButtonDisabled'>Login</button>
+    <button [disabled]='isButtonDisabled' color='primary' mat-flat-button type='submit'>Login</button>
   </form>
 
   <app-test-values></app-test-values>

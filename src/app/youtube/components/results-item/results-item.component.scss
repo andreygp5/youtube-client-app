@@ -1,5 +1,6 @@
 .item-card {
-  max-width: 300px;
+
+  width: 300px;
   border-bottom: 5px solid gray;
 
   @media (max-width: 660px) {
@@ -18,6 +19,16 @@
       min-height: 62px;
       line-height: 25px;
     }
+  }
+
+  &__image-container {
+    width: 100%;
+    height: 225px;
+  }
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
   }
 
   &__desc {

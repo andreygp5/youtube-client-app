@@ -2,7 +2,9 @@
   <mat-card-header class='item-card__header'>
     <mat-card-title>{{ title | trimText: 30 }}</mat-card-title>
   </mat-card-header>
-  <img alt='Image' mat-card-image src='{{ imageUrl }}'>
+  <div class='item-card__image-container'>
+    <img alt='Image' mat-card-image src='{{ imageUrl }}' class='item-card__image'>
+  </div>
   <mat-card-content>
     <p class='item-card__desc'>{{ description | trimText: 60 }}</p>
 
