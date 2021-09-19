@@ -20,7 +20,7 @@ export class SearchEffects {
           ofType(searchProcessInput),
           debounceTime(300),
           map((action) => action.input.replace(/\s/, '+')),
-          filter((input) => input !== ''),
+          filter((input) => input.length > 3),
           distinctUntilChanged(),
           withLatestFrom(this.store.select(selectSortName)),
           concatMap(([searchInputValue, sortName]) => {
