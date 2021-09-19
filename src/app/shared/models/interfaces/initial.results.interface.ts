@@ -1,5 +1,5 @@
-import { IInitialItem } from './initial.item.interface';
+import { IPartialItem } from './initial.item.interface';
 
-export interface IInitialResults {
-  items: IInitialItem[];
+export interface IPartialResults {
+  items: IPartialItem[];
 }

@@ -1,4 +1,4 @@
-export interface IInitialItem {
+export interface IPartialItem {
   id: {
     videoId: string;
   };
