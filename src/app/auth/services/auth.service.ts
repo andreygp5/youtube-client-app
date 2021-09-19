@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthTokenService } from './auth-token.service';
 import { ADMIN_EMAIL, ADMIN_PASSWORD, TEST_EMAIL, TEST_PASSWORD } from '../../core/constants/test.values';
@@ -32,16 +32,17 @@ export class AuthService {
   ) {
   }
 
-  public login(email: string, password: string): void {
-    setTimeout(() => {
+  public login(email: string, password: string): Observable<boolean> {
+    return new Observable<boolean>(subscriber => {
       if (this.getIsCredentialsValid(email, password)) {
         this.roleService.setCurrentUserRole(this.getRoleByEmail(email));
         this.authTokenService.setToken(`${email}&&${password}`);
         this.isLoggedIn.next(true);
+        subscriber.next(true);
       } else {
-        this.isLoggedIn.next(false);
+        subscriber.next(false);
       }
-    }, 2000);
+    });
   }
 
   public logout(): void {

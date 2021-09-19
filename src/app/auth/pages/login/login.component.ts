@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { skip, take } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 import { SnackbarService } from '../../../core/services/snackbar.service';
 
@@ -42,28 +41,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    this.authService.login(email, password);
-    this.subscribeToLogin();
-  }
+    this.authService.login(email, password).subscribe((res) => {
+      if (res) {
+        this.router.navigate(['youtube']);
+      } else {
+        this.snackbarService.showMsg('Not valid credentials');
+      }
 
-  public ngOnDestroy(): void {
-    this.unsubscribeFromValueChanges();
-  }
-
-  private subscribeToLogin(): void {
-    this.authService.isLoggedIn
-      .pipe(
-        take(2),
-        skip(1)
-      )
-      .subscribe((isLoggedIn) => {
-        if (isLoggedIn) {
-          this.router.navigate(['youtube']);
-        } else {
-          this.snackbarService.showMsg('Not valid credentials');
-        }
-        this.isButtonDisabled = false;
-      });
+      this.isButtonDisabled = false;
+    });
   }
 
   private subscribeToValueChanges(): void {
@@ -74,5 +60,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private unsubscribeFromValueChanges(): void {
     this.valueChangesSubscription?.unsubscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribeFromValueChanges();
   }
 }
