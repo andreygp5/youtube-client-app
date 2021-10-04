@@ -1,0 +1,23 @@
+<h2 class='title'>Login Page</h2>
+<div class='form-container'>
+  <form (ngSubmit)='onFormSubmit()' [formGroup]='loginForm' class='form'>
+    <div class='form__row'>
+      <mat-form-field appearance='standard'>
+        <mat-label>Email</mat-label>
+        <input formControlName='email' matInput required type='email' />
+      </mat-form-field>
+    </div>
+
+    <div class='form__row'>
+      <mat-form-field appearance='standard'>
+        <mat-label>Password</mat-label>
+        <input formControlName='password' matInput required type='password' />
+      </mat-form-field>
+    </div>
+
+    <button [disabled]='isButtonDisabled' color='primary' mat-flat-button type='submit'>Login</button>
+  </form>
+
+  <app-test-values></app-test-values>
+
+</div>

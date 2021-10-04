@@ -1,0 +1,22 @@
+<div class='search-wrapper'>
+  <app-logo></app-logo>
+  <div class='search'>
+    <input
+      (input)='setSearchInput()'
+      [(ngModel)]='searchInput'
+      [readOnly]='!authService.getIsLoggedIn()'
+      class='search__input'
+      placeholder='What do you want to find out?'
+      type='text'
+    />
+  </div>
+  <button
+    (click)='toggleSettings()'
+    [disabled]='!authService.getIsLoggedIn()'
+    class='trigger-settings'
+    color='primary'
+    mat-icon-button
+  >
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</div>

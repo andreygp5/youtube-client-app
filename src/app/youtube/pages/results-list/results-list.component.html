@@ -1,0 +1,11 @@
+<div *ngIf='videosList$; else infoMsg' class='grid'>
+  <app-results-item
+    *ngFor='let item of (videosList$ | async | filterByWord:(filterWord$ | async) | sortDirection:(sortDirection$ | async))'
+    [item]='item'
+  >
+  </app-results-item>
+</div>
+
+<ng-template #infoMsg>
+  <p class='info-msg'>No results found. It would be nice, if you will search something new)</p>
+</ng-template>
